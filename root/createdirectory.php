@@ -4,6 +4,7 @@
 
  mkdir($dir,777);
 
- header("location: index.php");
+
+ header("location: ./index.php");
 
  ?>
