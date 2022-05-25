@@ -21,17 +21,17 @@ $dir = opendir($path) or die ("Unable to open directory");
 $dir2 = scandir($path);
 while($file = readdir($dir))
 {
-    if($file =="." || $file ==".." || $file =="index.php" || $file == "createdirectory.php" 
-    || $file == "deletedirectory.php"){
-    // continue;
-    // echo "found the same";
-}
-else {
-    echo "<pre>";
-    echo "<a href='$file'>$file</a> <a href='deletedirectory.php'>   Delete</a> <input type='file'>";}
-    }
-    
-closedir($dir);
+    if($file =="."
+    || $file ==".."
+    || $file =="index.php"
+    || $file == "createdirectory.php"
+    || $file == "deletedirectory.php")
+    {}
+    else {
+        echo "<pre>";
+        echo "<a href='$file'>$file</a> <a href='deletedirectory.php?dir=$file'><img src='../assets/close.png' style='width:1%'></a> <input type='file'>";}
+        }
+    closedir($dir);
 
 ?>
 </body>
