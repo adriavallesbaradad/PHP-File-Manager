@@ -1,9 +1,13 @@
 <?php
-print_r($_FILES);
+// print_r($_FILES);
+include 'index.php';
+print_r($file);
 
 if (isset($_POST['submit'])){
-    $file = $_FILES['uploadFile']["name"];
-    print_r($file);
+    $file2 = $_FILES['uploadFile']["name"];
+    
+
+    
     $fileName = $_FILES['uploadFile']['name'];
     $fileTmpName = $_FILES['uploadFile']['tmp_name'];
     $fileSize = $_FILES['uploadFile']['size'];
@@ -17,20 +21,25 @@ if (isset($_POST['submit'])){
 
     if(in_array($fileActualExt, $allowed)) {
         if($fileError === 0){
+            
             if ($fileSize < 500000){
-                $fileNameNew = $uniqid('', true).".".$fileActualExt;
-                $fileDestination = readdir($dir).'/'.$fileNameNew;
+                $fileNameNew = uniqid('', true).".".$fileActualExt;
+                include 'index.php';
+                echo "$path";
+                $fileDestination = $path.'/'.$fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 header("Location: index.php?uploadsuccess");
             }
             else{
                 echo "Your file is to big";
+                header("Location: index.php?uploadfailed");
             }
 
         } else {
             echo "there was an error uploading your file!";
         }
     }else{
-        echo "You cannot upload files of this type!";
+        echo "<p>You cannot upload files of this type!</p>";
+        // header("Location: index.php?uploadfailed");
     }
 }
