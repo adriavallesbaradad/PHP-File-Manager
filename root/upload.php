@@ -22,11 +22,11 @@ if (isset($_POST['submit'])){
     if(in_array($fileActualExt, $allowed)) {
         if($fileError === 0){
             
-            if ($fileSize < 500000){
+            if ($fileSize < 50000000){
                 $fileNameNew = uniqid('', true).".".$fileActualExt;
                 include 'index.php';
                 echo "$path";
-                $fileDestination = $path.'/'.$fileNameNew;
+                $fileDestination = $path.'/'.$fileName.' '.$fileSize.'kb'.' ';
                 move_uploaded_file($fileTmpName, $fileDestination);
                 header("Location: index.php?uploadsuccess");
             }
